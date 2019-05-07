@@ -1,5 +1,5 @@
-import Queue.EmptyException;
-import Queue.FullException;
+package Queue;
+
 import java.util.LinkedList;
 
 public class MyQueue<T> {
