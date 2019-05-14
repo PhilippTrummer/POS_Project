@@ -196,21 +196,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Einsatz starten"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btStartActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btEnd">
       <Properties>
         <Property name="text" type="java.lang.String" value="Einsatz beenden"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEndActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btSaveLocal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Local Speichern"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSaveLocalActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btSaveDB">
       <Properties>
         <Property name="text" type="java.lang.String" value="In Datenbank speichern"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSaveDBActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

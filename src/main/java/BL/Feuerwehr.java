@@ -1,9 +1,10 @@
 package BL;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Feuerwehr {
+public class Feuerwehr implements Serializable{
 
     private String name;
     private String art;
@@ -12,7 +13,7 @@ public class Feuerwehr {
     private static DateTimeFormatter tf;
 
     static {
-        tf = DateTimeFormatter.ofPattern("HH:mm");
+        tf = DateTimeFormatter.ofPattern("HH:mm:ss");
     }
 
     public Feuerwehr(String name, String art, LocalTime time) {

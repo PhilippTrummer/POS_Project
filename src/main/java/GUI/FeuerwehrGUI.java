@@ -1,12 +1,14 @@
 package GUI;
 
-import BL.FeuerwehrBL;
+import BL.FeuerwehrModel;
+import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class FeuerwehrGUI extends javax.swing.JFrame {
 
-    FeuerwehrBL bl = new FeuerwehrBL();
-    
+    FeuerwehrModel bl = new FeuerwehrModel();
+
     public FeuerwehrGUI() {
         initComponents();
         listLog.setModel(bl);
@@ -74,12 +76,32 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(listGesamt);
 
         btStart.setText("Einsatz starten");
+        btStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btStartActionPerformed(evt);
+            }
+        });
 
         btEnd.setText("Einsatz beenden");
+        btEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEndActionPerformed(evt);
+            }
+        });
 
         btSaveLocal.setText("Local Speichern");
+        btSaveLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSaveLocalActionPerformed(evt);
+            }
+        });
 
         btSaveDB.setText("In Datenbank speichern");
+        btSaveDB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSaveDBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,9 +170,33 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser("C:\\Users\\Philipp\\Desktop");
         int i = chooser.showOpenDialog(this);
         if (i == JFileChooser.APPROVE_OPTION) {
-            bl.load(chooser.getSelectedFile());
+            try {
+                bl.load(new File("FeuerwehrData.bin"));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btImportLocalActionPerformed
+
+    private void btSaveDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveDBActionPerformed
+        try {
+            bl.save(new File("FeuerwehrData.bin"));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btSaveDBActionPerformed
+
+    private void btSaveLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveLocalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btSaveLocalActionPerformed
+
+    private void btStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btStartActionPerformed
+
+    private void btEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btEndActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
