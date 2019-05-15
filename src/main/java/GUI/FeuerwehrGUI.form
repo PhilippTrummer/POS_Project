@@ -76,6 +76,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Locale Datei laden"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miLoadUserLocalActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="miSaveUserDB">
           <Properties>
@@ -105,6 +108,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Benutzer l&#xf6;schen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miDeleteActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>

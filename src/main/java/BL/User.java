@@ -33,6 +33,10 @@ public class User {
         return String.format("Feuerwehr %s, Name: %s, Einsatzzeit: %s", feuerwehrName, name, time.format(tf));
     }
 
+    public String toCSV() {
+        return String.format("%s,%s,%s\n", feuerwehrName, name, time.format(tf));
+    }
+
     public String getName() {
         return name;
     }

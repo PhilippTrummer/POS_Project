@@ -2,7 +2,9 @@ package GUI;
 
 import BL.FeuerwehrModel;
 import BL.UserModel;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class FeuerwehrGUI extends javax.swing.JFrame {
 
@@ -104,6 +106,11 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         pmUsers.add(miSaveUserLocal);
 
         miLoadUserLocal.setText("Locale Datei laden");
+        miLoadUserLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miLoadUserLocalActionPerformed(evt);
+            }
+        });
         pmUsers.add(miLoadUserLocal);
 
         miSaveUserDB.setText("in Datenbank speichern");
@@ -125,6 +132,11 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         pmUsers.add(miFilter);
 
         miDelete.setText("Benutzer löschen");
+        miDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDeleteActionPerformed(evt);
+            }
+        });
         pmUsers.add(miDelete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,7 +197,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miSaveUserLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSaveUserLocalActionPerformed
-        // TODO add your handling code here:
+        um.save();
     }//GEN-LAST:event_miSaveUserLocalActionPerformed
 
     private void miLoadLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadLocalActionPerformed
@@ -224,6 +236,22 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     private void miEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEndActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_miEndActionPerformed
+
+    private void miLoadUserLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadUserLocalActionPerformed
+        JFileChooser chooser = new JFileChooser("C:\\Users\\Philipp\\Desktop");
+        int i = chooser.showOpenDialog(this);
+        if (i == JFileChooser.APPROVE_OPTION) {
+            um.load(chooser.getSelectedFile());
+        }
+    }//GEN-LAST:event_miLoadUserLocalActionPerformed
+
+    private void miDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDeleteActionPerformed
+        int j = JOptionPane.showConfirmDialog(this, "Wollen Sie das wirklich löschen?", "Achtung!", WIDTH, WIDTH);
+        if (j == JOptionPane.YES_OPTION) {
+            int i = listUser.getSelectedIndex();
+            um.delete(i);
+        }
+    }//GEN-LAST:event_miDeleteActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

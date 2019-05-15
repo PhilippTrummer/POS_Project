@@ -1,8 +1,10 @@
 package BL;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
@@ -15,6 +17,11 @@ public class UserModel extends AbstractListModel {
         users.add(u);
         filtered.add(u);
         this.fireIntervalAdded(this, filtered.size() - 1, filtered.size() - 1);
+    }
+
+    public void delete(int idx) {
+        filtered.remove(idx);
+        fireIntervalAdded(this, filtered.size() - 1, 0);
     }
 
     public void load(File f) {
@@ -31,6 +38,16 @@ public class UserModel extends AbstractListModel {
         } catch (Exception e) {
         }
         this.fireIntervalAdded(this, 0, filtered.size() - 1);
+    }
+
+    public void save() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("C:\\Users\\Philipp\\Desktop\\UserData.csv")))) {
+            for (User u : users) {
+                bw.write(u.toCSV());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
