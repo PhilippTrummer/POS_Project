@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Feuerwehr implements Serializable{
+public class Feuerwehr implements Serializable {
 
     private String name;
     private String art;
@@ -28,10 +28,14 @@ public class Feuerwehr implements Serializable{
         art = parts[1];
         time = LocalTime.parse(parts[2], tf);
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("Eingesetzt: %s, Einsatzart: %s, Dauer: %s", name, art, time);
+    }
+
+    public String toCSV() {
+        return String.format("%s,%s,%s\n", name, art, time.format(tf));
     }
 
     public String getName() {

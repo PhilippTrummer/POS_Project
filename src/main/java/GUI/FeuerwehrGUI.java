@@ -1,27 +1,42 @@
 package GUI;
 
 import BL.FeuerwehrModel;
-import java.io.File;
+import BL.UserModel;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 public class FeuerwehrGUI extends javax.swing.JFrame {
 
-    FeuerwehrModel bl = new FeuerwehrModel();
+    FeuerwehrModel fm = new FeuerwehrModel();
+    UserModel um = new UserModel();
 
     public FeuerwehrGUI() {
         initComponents();
-        listLog.setModel(bl);
+        listLog.setModel(fm);
+        listLog.setComponentPopupMenu(pmLog);
+
+        listUser.setModel(um);
+        listUser.setComponentPopupMenu(pmUsers);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        pmLog = new javax.swing.JPopupMenu();
+        miSaveLocal = new javax.swing.JMenuItem();
+        miLoadLocal = new javax.swing.JMenuItem();
+        miSaveDB = new javax.swing.JMenuItem();
+        miLoadDB = new javax.swing.JMenuItem();
+        miStart = new javax.swing.JMenuItem();
+        miEnd = new javax.swing.JMenuItem();
+        pmUsers = new javax.swing.JPopupMenu();
+        miSaveUserLocal = new javax.swing.JMenuItem();
+        miLoadUserLocal = new javax.swing.JMenuItem();
+        miSaveUserDB = new javax.swing.JMenuItem();
+        miLoadUserDB = new javax.swing.JMenuItem();
         miAdd = new javax.swing.JMenuItem();
+        miFilter = new javax.swing.JMenuItem();
         miDelete = new javax.swing.JMenuItem();
-        miChange = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         listLog = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -29,23 +44,88 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btImportDB = new javax.swing.JButton();
-        btImportLocal = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listGesamt = new javax.swing.JList();
-        btStart = new javax.swing.JButton();
-        btEnd = new javax.swing.JButton();
-        btSaveLocal = new javax.swing.JButton();
-        btSaveDB = new javax.swing.JButton();
 
-        miAdd.setText("jMenuItem1");
-        jPopupMenu1.add(miAdd);
+        miSaveLocal.setText("Local speichern");
+        miSaveLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSaveLocalActionPerformed(evt);
+            }
+        });
+        pmLog.add(miSaveLocal);
 
-        miDelete.setText("jMenuItem1");
-        jPopupMenu1.add(miDelete);
+        miLoadLocal.setText("Locale Datei laden");
+        miLoadLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miLoadLocalActionPerformed(evt);
+            }
+        });
+        pmLog.add(miLoadLocal);
 
-        miChange.setText("jMenuItem1");
-        jPopupMenu1.add(miChange);
+        miSaveDB.setText("in Datenbank speichern");
+        miSaveDB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSaveDBActionPerformed(evt);
+            }
+        });
+        pmLog.add(miSaveDB);
+
+        miLoadDB.setText("von Datenbank laden");
+        miLoadDB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miLoadDBActionPerformed(evt);
+            }
+        });
+        pmLog.add(miLoadDB);
+
+        miStart.setText("Einsatz starten");
+        miStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miStartActionPerformed(evt);
+            }
+        });
+        pmLog.add(miStart);
+
+        miEnd.setText("Einsatz beenden");
+        miEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEndActionPerformed(evt);
+            }
+        });
+        pmLog.add(miEnd);
+
+        miSaveUserLocal.setText("Datei local speichern");
+        miSaveUserLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSaveUserLocalActionPerformed(evt);
+            }
+        });
+        pmUsers.add(miSaveUserLocal);
+
+        miLoadUserLocal.setText("Locale Datei laden");
+        pmUsers.add(miLoadUserLocal);
+
+        miSaveUserDB.setText("in Datenbank speichern");
+        pmUsers.add(miSaveUserDB);
+
+        miLoadUserDB.setText("von Datenbank laden");
+        miLoadUserDB.setToolTipText("");
+        pmUsers.add(miLoadUserDB);
+
+        miAdd.setText("Benutzer hinzufügen");
+        miAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddActionPerformed(evt);
+            }
+        });
+        pmUsers.add(miAdd);
+
+        miFilter.setText("nach Einsatzzeit filtern");
+        pmUsers.add(miFilter);
+
+        miDelete.setText("Benutzer löschen");
+        pmUsers.add(miDelete);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,144 +139,91 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Gesamteinsatzzeit von den Feuerwehren:");
 
-        btImportDB.setText("Datei von Datenbank importieren");
-        btImportDB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImportDBActionPerformed(evt);
-            }
-        });
-
-        btImportLocal.setText("Datei local importieren");
-        btImportLocal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImportLocalActionPerformed(evt);
-            }
-        });
-
         jScrollPane3.setViewportView(listGesamt);
-
-        btStart.setText("Einsatz starten");
-        btStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btStartActionPerformed(evt);
-            }
-        });
-
-        btEnd.setText("Einsatz beenden");
-        btEnd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEndActionPerformed(evt);
-            }
-        });
-
-        btSaveLocal.setText("Local Speichern");
-        btSaveLocal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveLocalActionPerformed(evt);
-            }
-        });
-
-        btSaveDB.setText("In Datenbank speichern");
-        btSaveDB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSaveDBActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btImportLocal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btImportDB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(btSaveLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btSaveDB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3))
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(btStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(19, 19, 19))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(25, 25, 25)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btSaveDB)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSaveLocal)
-                        .addGap(0, 7, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btImportDB)
-                    .addComponent(btStart))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btImportLocal)
-                    .addComponent(btEnd))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btImportDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImportDBActionPerformed
+    private void miSaveUserLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSaveUserLocalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btImportDBActionPerformed
+    }//GEN-LAST:event_miSaveUserLocalActionPerformed
 
-    private void btImportLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImportLocalActionPerformed
+    private void miLoadLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadLocalActionPerformed
         JFileChooser chooser = new JFileChooser("C:\\Users\\Philipp\\Desktop");
         int i = chooser.showOpenDialog(this);
         if (i == JFileChooser.APPROVE_OPTION) {
-            try {
-                bl.load(new File("FeuerwehrData.bin"));
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            fm.load(chooser.getSelectedFile());
         }
-    }//GEN-LAST:event_btImportLocalActionPerformed
+    }//GEN-LAST:event_miLoadLocalActionPerformed
 
-    private void btSaveDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveDBActionPerformed
-        try {
-            bl.save(new File("FeuerwehrData.bin"));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    private void miAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddActionPerformed
+        UserDialog dialog = new UserDialog(this, true);
+        dialog.setVisible(true);
+
+        if (dialog.isOk()) {
+            um.addUser(dialog.getU());
         }
-    }//GEN-LAST:event_btSaveDBActionPerformed
+    }//GEN-LAST:event_miAddActionPerformed
 
-    private void btSaveLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaveLocalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btSaveLocalActionPerformed
+    private void miSaveLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSaveLocalActionPerformed
+        fm.save();
+    }//GEN-LAST:event_miSaveLocalActionPerformed
 
-    private void btStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btStartActionPerformed
+    private void miSaveDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSaveDBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btStartActionPerformed
+    }//GEN-LAST:event_miSaveDBActionPerformed
 
-    private void btEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEndActionPerformed
+    private void miLoadDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadDBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btEndActionPerformed
+    }//GEN-LAST:event_miLoadDBActionPerformed
+
+    private void miStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miStartActionPerformed
+
+    private void miEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_miEndActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -231,16 +258,9 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btEnd;
-    private javax.swing.JButton btImportDB;
-    private javax.swing.JButton btImportLocal;
-    private javax.swing.JButton btSaveDB;
-    private javax.swing.JButton btSaveLocal;
-    private javax.swing.JButton btStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -248,7 +268,19 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     private javax.swing.JList listLog;
     private javax.swing.JList listUser;
     private javax.swing.JMenuItem miAdd;
-    private javax.swing.JMenuItem miChange;
     private javax.swing.JMenuItem miDelete;
+    private javax.swing.JMenuItem miEnd;
+    private javax.swing.JMenuItem miFilter;
+    private javax.swing.JMenuItem miLoadDB;
+    private javax.swing.JMenuItem miLoadLocal;
+    private javax.swing.JMenuItem miLoadUserDB;
+    private javax.swing.JMenuItem miLoadUserLocal;
+    private javax.swing.JMenuItem miSaveDB;
+    private javax.swing.JMenuItem miSaveLocal;
+    private javax.swing.JMenuItem miSaveUserDB;
+    private javax.swing.JMenuItem miSaveUserLocal;
+    private javax.swing.JMenuItem miStart;
+    private javax.swing.JPopupMenu pmLog;
+    private javax.swing.JPopupMenu pmUsers;
     // End of variables declaration//GEN-END:variables
 }
