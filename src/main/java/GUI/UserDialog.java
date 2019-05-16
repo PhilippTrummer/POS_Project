@@ -1,7 +1,6 @@
 package GUI;
 
 import BL.User;
-import java.time.LocalTime;
 
 public class UserDialog extends javax.swing.JDialog {
 
@@ -94,7 +93,7 @@ public class UserDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
-        u = new User(tfName.getText(), tfFire.getText(), LocalTime.of(0, 0));
+        u = new User(tfName.getText(), tfFire.getText(),"");
 
         ok = true;
         this.dispose();

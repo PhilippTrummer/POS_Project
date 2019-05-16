@@ -1,40 +1,31 @@
 package BL;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 public class User {
 
     private String name;
     private String feuerwehrName;
-    private LocalTime time;
+    private String duration;
 
-    private static DateTimeFormatter tf;
-
-    static {
-        tf = DateTimeFormatter.ofPattern("HH:mm:ss");
-    }
-
-    public User(String name, String feuerwehrName, LocalTime time) {
+    public User(String name, String feuerwehrName, String duration) {
         this.name = name;
         this.feuerwehrName = feuerwehrName;
-        this.time = time;
+        this.duration = duration;
     }
 
     public User(String line) {
         String parts[] = line.split(";");
         feuerwehrName = parts[0];
         name = parts[1];
-        time = LocalTime.parse(parts[2], tf);
+        duration = parts[2];
     }
 
     @Override
     public String toString() {
-        return String.format("Feuerwehr %s, Name: %s, Einsatzzeit: %s", feuerwehrName, name, time.format(tf));
+        return String.format("Feuerwehr %s, Name: %s, Einsatzzeit: %s", feuerwehrName, name, duration);
     }
 
     public String toCSV() {
-        return String.format("%s,%s,%s\n", feuerwehrName, name, time.format(tf));
+        return String.format("%s,%s,%s\n", feuerwehrName, name, duration);
     }
 
     public String getName() {
@@ -45,7 +36,7 @@ public class User {
         return feuerwehrName;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public String getDuration() {
+        return duration;
     }
 }

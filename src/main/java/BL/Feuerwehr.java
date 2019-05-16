@@ -1,52 +1,42 @@
 package BL;
 
-import java.io.Serializable;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-public class Feuerwehr implements Serializable {
+public class Feuerwehr {
 
     private String name;
-    private String art;
-    private LocalTime time;
+    private String type;
+    private String duration;
 
-    private static DateTimeFormatter tf;
-
-    static {
-        tf = DateTimeFormatter.ofPattern("HH:mm:ss");
-    }
-
-    public Feuerwehr(String name, String art, LocalTime time) {
+    public Feuerwehr(String name, String type, String duration) {
         this.name = name;
-        this.art = art;
-        this.time = time;
+        this.type = type;
+        this.duration = duration;
     }
 
     public Feuerwehr(String line) {
         String parts[] = line.split(";");
         name = parts[0];
-        art = parts[1];
-        time = LocalTime.parse(parts[2], tf);
+        type = parts[1];
+        duration = parts[2];
     }
 
     @Override
     public String toString() {
-        return String.format("Eingesetzt: %s, Einsatzart: %s, Dauer: %s", name, art, time);
+        return String.format("Eingesetzt: %s, Einsatzart: %s, Dauer: %s", name, type, duration);
     }
 
     public String toCSV() {
-        return String.format("%s,%s,%s\n", name, art, time.format(tf));
+        return String.format("%s,%s,%s\n", name, type, duration);
     }
 
     public String getName() {
         return name;
     }
 
-    public String getArt() {
-        return art;
+    public String getType() {
+        return type;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public String getDuration() {
+        return duration;
     }
 }

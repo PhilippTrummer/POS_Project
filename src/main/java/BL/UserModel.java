@@ -31,11 +31,13 @@ public class UserModel extends AbstractListModel {
                 try {
                     users.add(new User(line));
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
             filtered.addAll(users);
             this.fireIntervalAdded(this, 0, filtered.size() - 1);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         this.fireIntervalAdded(this, 0, filtered.size() - 1);
     }

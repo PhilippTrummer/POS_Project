@@ -99,11 +99,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miAddActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="miFilter">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="nach Einsatzzeit filtern"/>
-          </Properties>
-        </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="miDelete">
           <Properties>
             <Property name="text" type="java.lang.String" value="Benutzer l&#xf6;schen"/>

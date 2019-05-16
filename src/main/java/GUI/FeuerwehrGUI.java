@@ -3,6 +3,9 @@ package GUI;
 import BL.FeuerwehrModel;
 import BL.UserModel;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -37,7 +40,6 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         miSaveUserDB = new javax.swing.JMenuItem();
         miLoadUserDB = new javax.swing.JMenuItem();
         miAdd = new javax.swing.JMenuItem();
-        miFilter = new javax.swing.JMenuItem();
         miDelete = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         listLog = new javax.swing.JList();
@@ -127,9 +129,6 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
             }
         });
         pmUsers.add(miAdd);
-
-        miFilter.setText("nach Einsatzzeit filtern");
-        pmUsers.add(miFilter);
 
         miDelete.setText("Benutzer löschen");
         miDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +225,11 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_miSaveDBActionPerformed
 
     private void miLoadDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadDBActionPerformed
-        // TODO add your handling code here:
+        try {
+            fm.loadFeuerwehrFromDatabase();
+        } catch (SQLException ex) {
+            Logger.getLogger(FeuerwehrGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_miLoadDBActionPerformed
 
     private void miStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStartActionPerformed
@@ -246,7 +249,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_miLoadUserLocalActionPerformed
 
     private void miDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDeleteActionPerformed
-        int j = JOptionPane.showConfirmDialog(this, "Wollen Sie das wirklich löschen?", "Achtung!", WIDTH, WIDTH);
+        int j = JOptionPane.showConfirmDialog(this, "Wollen Sie diesen Benutzer wirklich löschen?", "Achtung!", WIDTH, WIDTH);
         if (j == JOptionPane.YES_OPTION) {
             int i = listUser.getSelectedIndex();
             um.delete(i);
@@ -298,7 +301,6 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem miAdd;
     private javax.swing.JMenuItem miDelete;
     private javax.swing.JMenuItem miEnd;
-    private javax.swing.JMenuItem miFilter;
     private javax.swing.JMenuItem miLoadDB;
     private javax.swing.JMenuItem miLoadLocal;
     private javax.swing.JMenuItem miLoadUserDB;
