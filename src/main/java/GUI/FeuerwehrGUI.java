@@ -1,6 +1,7 @@
 package GUI;
 
-import BL.FeuerwehrModel;
+import BL.FirefightersModel;
+import BL.Firefighters;
 import Threads.Duration;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -8,10 +9,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class FeuerwehrGUI extends javax.swing.JFrame {
 
-    private FeuerwehrModel fm = new FeuerwehrModel();
+    private FirefightersModel fm = new FirefightersModel();
     private Duration d;
 
     public FeuerwehrGUI() {
@@ -39,10 +41,10 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        listGesamt = new javax.swing.JList();
+        listTotal = new javax.swing.JList();
         panelDuration = new javax.swing.JPanel();
 
-        miSaveLocal.setText("Local speichern");
+        miSaveLocal.setText("save local");
         miSaveLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miSaveLocalActionPerformed(evt);
@@ -50,7 +52,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         });
         pmLog.add(miSaveLocal);
 
-        miLoadLocal.setText("Locale Datei laden");
+        miLoadLocal.setText("load local");
         miLoadLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miLoadLocalActionPerformed(evt);
@@ -58,7 +60,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         });
         pmLog.add(miLoadLocal);
 
-        miSaveDB.setText("in Datenbank speichern");
+        miSaveDB.setText("save in database");
         miSaveDB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miSaveDBActionPerformed(evt);
@@ -66,7 +68,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         });
         pmLog.add(miSaveDB);
 
-        miLoadDB.setText("von Datenbank laden");
+        miLoadDB.setText("load from database");
         miLoadDB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miLoadDBActionPerformed(evt);
@@ -75,6 +77,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         pmLog.add(miLoadDB);
 
         miStart.setText("Einsatz starten");
+        miStart.setActionCommand("start operation");
         miStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miStartActionPerformed(evt);
@@ -82,7 +85,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         });
         pmLog.add(miStart);
 
-        miEnd.setText("Einsatz beenden");
+        miEnd.setText("stop operation");
         miEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miEndActionPerformed(evt);
@@ -94,11 +97,11 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(listLog);
 
-        jLabel2.setText("Einsätze:");
+        jLabel2.setText("Operations:");
 
-        jLabel3.setText("Gesamteinsatzzeit von den Feuerwehren:");
+        jLabel3.setText("Total operation duration of the firefighters:");
 
-        jScrollPane3.setViewportView(listGesamt);
+        jScrollPane3.setViewportView(listTotal);
 
         javax.swing.GroupLayout panelDurationLayout = new javax.swing.GroupLayout(panelDuration);
         panelDuration.setLayout(panelDurationLayout);
@@ -148,7 +151,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miLoadLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadLocalActionPerformed
-        JFileChooser chooser = new JFileChooser("C:\\Users\\Philipp\\Desktop");
+        JFileChooser chooser = new JFileChooser("D:");
         int i = chooser.showOpenDialog(this);
         if (i == JFileChooser.APPROVE_OPTION) {
             fm.load(chooser.getSelectedFile());
@@ -179,13 +182,17 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         panelDuration.setLayout(new GridLayout(1, 1));
         panelDuration.setBackground(Color.black);
 
-        d = new Duration(0);
+        d = new Duration();
         panelDuration.add(d);
         new Thread(d).start();
     }//GEN-LAST:event_miStartActionPerformed
 
     private void miEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEndActionPerformed
         d.setOperation(false);
+        String type = JOptionPane.showInputDialog(this, "Please enter the operation type.");
+        String firefighters = JOptionPane.showInputDialog(this, "Please enter the name of the firefighter station.");
+        System.out.println(d.getDiff());
+        //listLog.add(new Firefighters(firefighters, type, d.getDiff()));
     }//GEN-LAST:event_miEndActionPerformed
 
     public static void main(String args[]) {
@@ -211,6 +218,9 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FeuerwehrGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -225,8 +235,8 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList listGesamt;
     private javax.swing.JList listLog;
+    private javax.swing.JList listTotal;
     private javax.swing.JMenuItem miEnd;
     private javax.swing.JMenuItem miLoadDB;
     private javax.swing.JMenuItem miLoadLocal;

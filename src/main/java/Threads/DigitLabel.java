@@ -11,36 +11,35 @@ public class DigitLabel extends JLabel {
         }
         switch (digit) {
             case 0:
-                this.setIcon(new ImageIcon("./bilder/0.PNG"));
+                this.setIcon(new ImageIcon("./pictures/0.PNG"));
                 break;
             case 1:
-                this.setIcon(new ImageIcon("./bilder/1.PNG"));
+                this.setIcon(new ImageIcon("./pictures/1.PNG"));
                 break;
             case 2:
-                this.setIcon(new ImageIcon("./bilder/2.PNG"));
+                this.setIcon(new ImageIcon("./pictures/2.PNG"));
                 break;
             case 3:
-                this.setIcon(new ImageIcon("./bilder/3.PNG"));
+                this.setIcon(new ImageIcon("./pictures/3.PNG"));
                 break;
             case 4:
-                this.setIcon(new ImageIcon("./bilder/4.PNG"));
+                this.setIcon(new ImageIcon("./pictures/4.PNG"));
                 break;
             case 5:
-                this.setIcon(new ImageIcon("./bilder/5.PNG"));
+                this.setIcon(new ImageIcon("./pictures/5.PNG"));
                 break;
             case 6:
-                this.setIcon(new ImageIcon("./bilder/6.PNG"));
+                this.setIcon(new ImageIcon("./pictures/6.PNG"));
                 break;
             case 7:
-                this.setIcon(new ImageIcon("./bilder/7.PNG"));
+                this.setIcon(new ImageIcon("./pictures/7.PNG"));
                 break;
             case 8:
-                this.setIcon(new ImageIcon("./bilder/8.PNG"));
+                this.setIcon(new ImageIcon("./pictures/8.PNG"));
                 break;
             case 9:
-                this.setIcon(new ImageIcon("./bilder/9.PNG"));
+                this.setIcon(new ImageIcon("./pictures/9.PNG"));
                 break;
-
         }
     }
 }

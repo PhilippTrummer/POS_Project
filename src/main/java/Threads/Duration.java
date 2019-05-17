@@ -12,15 +12,19 @@ import javax.swing.JPanel;
 public class Duration extends JPanel implements Runnable {
 
     private DigitLabel[] digits = new DigitLabel[6];
-    private int diff;
+    private String diff;
     private boolean operation = true;
 
     public void setOperation(boolean operation) {
         this.operation = operation;
     }
 
-    public Duration(int diff) {
-        this.diff = diff;
+    public String getDiff() {
+        return diff;
+    }
+
+    public Duration() {
+        this.diff = "00:00:00";
         this.setBackground(Color.black);
         this.setLayout(new GridLayout(1, 9));
 
@@ -45,12 +49,11 @@ public class Duration extends JPanel implements Runnable {
     @Override
     public void run() {
         LocalTime time = LocalTime.now();
+        LocalTime now = null;
         while (operation) {
             try {
 
-                LocalTime now = LocalTime.now();
-                
-                now = now.minusHours(time.getHour());
+                now = LocalTime.now().minusHours(time.getHour());
                 now = now.minusMinutes(time.getMinute());
                 now = now.minusSeconds(time.getSecond());
                 
@@ -71,5 +74,8 @@ public class Duration extends JPanel implements Runnable {
                 Logger.getLogger(Duration.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        diff = now.getHour()+":";
+        diff += now.getMinute()+":";
+        diff += now.getSecond()+"";
     }
 }

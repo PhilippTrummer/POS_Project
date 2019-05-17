@@ -1,18 +1,18 @@
 package BL;
 
-public class Feuerwehr {
+public class Firefighters {
 
     private String name;
     private String type;
     private String duration;
 
-    public Feuerwehr(String name, String type, String duration) {
+    public Firefighters(String name, String type, String duration) {
         this.name = name;
         this.type = type;
         this.duration = duration;
     }
 
-    public Feuerwehr(String line) {
+    public Firefighters(String line) {
         String parts[] = line.split(";");
         name = parts[0];
         type = parts[1];

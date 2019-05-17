@@ -11,9 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
-public class FeuerwehrModel extends AbstractListModel {
+public class FirefightersModel extends AbstractListModel {
 
-    private ArrayList<Feuerwehr> feuerwehr = new ArrayList<>();
+    private ArrayList<Firefighters> firefighters = new ArrayList<>();
     private DatabaseManager dm;
 
     {
@@ -29,43 +29,43 @@ public class FeuerwehrModel extends AbstractListModel {
             String line;
             while ((line = br.readLine()) != null) {
                 try {
-                    feuerwehr.add(new Feuerwehr(line));
+                    firefighters.add(new Firefighters(line));
                 } catch (Exception e) {
-                    e.printStackTrace();
+
                 }
             }
-            this.fireIntervalAdded(this, 0, feuerwehr.size() - 1);
+            this.fireIntervalAdded(this, 0, firefighters.size() - 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.fireIntervalAdded(this, 0, feuerwehr.size() - 1);
+        this.fireIntervalAdded(this, 0, firefighters.size() - 1);
     }
 
     public void save() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("C:\\Users\\Philipp\\Desktop\\FeuerwehrData.csv")))) {
-            for (Feuerwehr m : feuerwehr) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("./files/FirefightersData.csv")))) {
+            for (Firefighters m : firefighters) {
                 bw.write(m.toCSV());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 
-    public void addFeuerwehr(Feuerwehr f) {
-        feuerwehr.add(f);
-        this.fireIntervalAdded(this, feuerwehr.size() - 1, feuerwehr.size() - 1);
+    public void addFeuerwehr(Firefighters f) {
+        firefighters.add(f);
+        this.fireIntervalAdded(this, firefighters.size() - 1, firefighters.size() - 1);
     }
 
     public void loadFeuerwehrFromDatabase() throws SQLException {
         ResultSet res = dm.executeQuery("SELECT * FROM operations;");
         while (res.next()) {
-            feuerwehr.add(new Feuerwehr(res.getString(2), res.getString(1), res.getString(4)));
+            firefighters.add(new Firefighters(res.getString(2), res.getString(1), res.getString(4)));
         }
-        this.fireIntervalAdded(this, 0, feuerwehr.size() - 1);
+        this.fireIntervalAdded(this, 0, firefighters.size() - 1);
     }
 
     public void saveFeuerwehrToDatabase() throws SQLException {
-        for (Feuerwehr f : feuerwehr) {
+        for (Firefighters f : firefighters) {
             ResultSet res = dm.executeQuery("SELECT * FROM operations WHERE type='"
                     + f.getType() + "' AND firefighters='"
                     + f.getName() + "' AND duration='"
@@ -83,11 +83,11 @@ public class FeuerwehrModel extends AbstractListModel {
 
     @Override
     public int getSize() {
-        return feuerwehr.size();
+        return firefighters.size();
     }
 
     @Override
     public Object getElementAt(int i) {
-        return feuerwehr.get(i);
+        return firefighters.get(i);
     }
 }
