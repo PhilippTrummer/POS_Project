@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
@@ -32,10 +31,12 @@ public class FeuerwehrModel extends AbstractListModel {
                 try {
                     feuerwehr.add(new Feuerwehr(line));
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
             this.fireIntervalAdded(this, 0, feuerwehr.size() - 1);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         this.fireIntervalAdded(this, 0, feuerwehr.size() - 1);
     }
@@ -58,7 +59,7 @@ public class FeuerwehrModel extends AbstractListModel {
     public void loadFeuerwehrFromDatabase() throws SQLException {
         ResultSet res = dm.executeQuery("SELECT * FROM operations;");
         while (res.next()) {
-            feuerwehr.add(new Feuerwehr(res.getString(2), res.getString(1), ""));
+            feuerwehr.add(new Feuerwehr(res.getString(2), res.getString(1), res.getString(4)));
         }
         this.fireIntervalAdded(this, 0, feuerwehr.size() - 1);
     }
@@ -66,16 +67,16 @@ public class FeuerwehrModel extends AbstractListModel {
     public void saveFeuerwehrToDatabase() throws SQLException {
         for (Feuerwehr f : feuerwehr) {
             ResultSet res = dm.executeQuery("SELECT * FROM operations WHERE type='"
-                    + f.getType() + "' AND name='"
+                    + f.getType() + "' AND firefighters='"
                     + f.getName() + "' AND duration='"
-                    + f.getDuration() + "' ");
+                    + f.getDuration() + "';");
             if (res.next()) {
 
             } else {
                 dm.executeUpdate("INSERT INTO operations(type,firefighters,duration) VALUES('"
                         + f.getType() + "','"
                         + f.getName() + "','"
-                        + f.getDuration() + "' ");
+                        + f.getDuration() + "' );");
             }
         }
     }
