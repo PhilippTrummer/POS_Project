@@ -175,7 +175,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_miLoadDBActionPerformed
 
     private void miStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStartActionPerformed
-        panelDuration.setLayout(new GridLayout(3, 1));
+        panelDuration.setLayout(new GridLayout(1, 1));
         panelDuration.setBackground(Color.black);
 
         Duration test = new Duration(0);
