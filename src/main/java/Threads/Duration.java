@@ -23,6 +23,9 @@ public class Duration extends JPanel implements Runnable {
         return diff;
     }
 
+    /**
+     *
+     */
     public Duration() {
         this.diff = "00:00:00";
         this.setBackground(Color.black);
@@ -46,6 +49,9 @@ public class Duration extends JPanel implements Runnable {
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void run() {
         LocalTime time = LocalTime.now();
@@ -56,14 +62,14 @@ public class Duration extends JPanel implements Runnable {
                 now = LocalTime.now().minusHours(time.getHour());
                 now = now.minusMinutes(time.getMinute());
                 now = now.minusSeconds(time.getSecond());
-                
+
                 digits[0].setDigit(now.getHour() / 10);
                 digits[1].setDigit(now.getHour() % 10);
                 digits[2].setDigit(now.getMinute() / 10);
                 digits[3].setDigit(now.getMinute() % 10);
                 digits[4].setDigit(now.getSecond() / 10);
                 digits[5].setDigit(now.getSecond() % 10);
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(Duration.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -74,8 +80,10 @@ public class Duration extends JPanel implements Runnable {
                 Logger.getLogger(Duration.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        diff = now.getHour()+":";
-        diff += now.getMinute()+":";
-        diff += now.getSecond()+"";
+        diff = now.getHour() + ":";
+        diff += now.getMinute() + ":";
+        diff += now.getSecond() + "";
+
+        this.removeAll();
     }
 }

@@ -24,6 +24,10 @@ public class FirefightersModel extends AbstractListModel {
         }
     }
 
+    /**
+     * 
+     * @param f 
+     */
     public void load(File f) {
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             String line;
@@ -40,7 +44,10 @@ public class FirefightersModel extends AbstractListModel {
         }
         this.fireIntervalAdded(this, 0, firefighters.size() - 1);
     }
-
+    
+    /**
+     * 
+     */
     public void save() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("./files/FirefightersData.csv")))) {
             for (Firefighters m : firefighters) {
@@ -50,12 +57,20 @@ public class FirefightersModel extends AbstractListModel {
 
         }
     }
-
+    
+    /**
+     * 
+     * @param f 
+     */
     public void addFeuerwehr(Firefighters f) {
         firefighters.add(f);
         this.fireIntervalAdded(this, firefighters.size() - 1, firefighters.size() - 1);
     }
-
+    
+    /**
+     * 
+     * @throws SQLException 
+     */
     public void loadFeuerwehrFromDatabase() throws SQLException {
         ResultSet res = dm.executeQuery("SELECT * FROM operations;");
         while (res.next()) {
@@ -64,6 +79,10 @@ public class FirefightersModel extends AbstractListModel {
         this.fireIntervalAdded(this, 0, firefighters.size() - 1);
     }
 
+    /**
+     * 
+     * @throws SQLException 
+     */
     public void saveFeuerwehrToDatabase() throws SQLException {
         for (Firefighters f : firefighters) {
             ResultSet res = dm.executeQuery("SELECT * FROM operations WHERE type='"

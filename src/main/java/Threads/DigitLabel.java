@@ -5,6 +5,11 @@ import javax.swing.JLabel;
 
 public class DigitLabel extends JLabel {
 
+    /**
+     * 
+     * @param digit
+     * @throws Exception 
+     */
     public void setDigit(int digit) throws Exception {
         if (digit < 0 || digit > 9) {
             throw new Exception("Out of range");

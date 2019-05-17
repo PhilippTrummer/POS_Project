@@ -12,6 +12,10 @@ public class Firefighters {
         this.duration = duration;
     }
 
+    /**
+     * 
+     * @param line 
+     */
     public Firefighters(String line) {
         String parts[] = line.split(";");
         name = parts[0];
@@ -19,11 +23,19 @@ public class Firefighters {
         duration = parts[2];
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString() {
-        return String.format("Eingesetzt: %s, Einsatzart: %s, Dauer: %s", name, type, duration);
+        return String.format("Name: %s, Type: %s, Duration: %s", name, type, duration);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String toCSV() {
         return String.format("%s,%s,%s\n", name, type, duration);
     }

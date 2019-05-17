@@ -149,7 +149,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void miLoadLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miLoadLocalActionPerformed
         JFileChooser chooser = new JFileChooser("D:");
         int i = chooser.showOpenDialog(this);
@@ -192,7 +192,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         String type = JOptionPane.showInputDialog(this, "Please enter the operation type.");
         String firefighters = JOptionPane.showInputDialog(this, "Please enter the name of the firefighter station.");
         System.out.println(d.getDiff());
-        //listLog.add(new Firefighters(firefighters, type, d.getDiff()));
+        fm.addFeuerwehr(new Firefighters(firefighters, type, d.getDiff()));
     }//GEN-LAST:event_miEndActionPerformed
 
     public static void main(String args[]) {
