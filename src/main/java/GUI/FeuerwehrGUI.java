@@ -39,9 +39,6 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listLog = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        listTotal = new javax.swing.JList();
         panelDuration = new javax.swing.JPanel();
 
         miSaveLocal.setText("save local");
@@ -99,10 +96,6 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Operations:");
 
-        jLabel3.setText("Total operation duration of the firefighters:");
-
-        jScrollPane3.setViewportView(listTotal);
-
         javax.swing.GroupLayout panelDurationLayout = new javax.swing.GroupLayout(panelDuration);
         panelDuration.setLayout(panelDurationLayout);
         panelDurationLayout.setHorizontalGroup(
@@ -121,30 +114,25 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
-                    .addComponent(panelDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 14, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panelDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(panelDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3))
-                .addContainerGap())
+                .addComponent(panelDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -179,6 +167,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_miLoadDBActionPerformed
 
     private void miStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miStartActionPerformed
+        panelDuration.removeAll();
         panelDuration.setLayout(new GridLayout(1, 1));
         panelDuration.setBackground(Color.black);
 
@@ -191,7 +180,6 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         d.setOperation(false);
         String type = JOptionPane.showInputDialog(this, "Please enter the operation type.");
         String firefighters = JOptionPane.showInputDialog(this, "Please enter the name of the firefighter station.");
-        System.out.println(d.getDiff());
         fm.addFeuerwehr(new Firefighters(firefighters, type, d.getDiff()));
     }//GEN-LAST:event_miEndActionPerformed
 
@@ -232,11 +220,8 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList listLog;
-    private javax.swing.JList listTotal;
     private javax.swing.JMenuItem miEnd;
     private javax.swing.JMenuItem miLoadDB;
     private javax.swing.JMenuItem miLoadLocal;

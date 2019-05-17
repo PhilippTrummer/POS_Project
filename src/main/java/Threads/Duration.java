@@ -24,7 +24,7 @@ public class Duration extends JPanel implements Runnable {
     }
 
     /**
-     *
+     * Creates the labels in the panel an the :
      */
     public Duration() {
         this.diff = "00:00:00";
@@ -50,7 +50,7 @@ public class Duration extends JPanel implements Runnable {
     }
 
     /**
-     *
+     * Method for counting the operation time.
      */
     @Override
     public void run() {
@@ -83,7 +83,5 @@ public class Duration extends JPanel implements Runnable {
         diff = now.getHour() + ":";
         diff += now.getMinute() + ":";
         diff += now.getSecond() + "";
-
-        this.removeAll();
     }
 }

@@ -20,12 +20,12 @@ public class Firefighters {
         String parts[] = line.split(";");
         name = parts[0];
         type = parts[1];
-        duration = parts[2];
+        duration = parts[2];   
     }
-
+    
     /**
-     * 
-     * @return 
+     *  Creates the string for the list.
+     * @return The string which is shown in the list.
      */
     @Override
     public String toString() {
@@ -33,8 +33,8 @@ public class Firefighters {
     }
 
     /**
-     * 
-     * @return 
+     * Creates the string for the csv file.
+     * @return The string which is shown in the csv file.
      */
     public String toCSV() {
         return String.format("%s,%s,%s\n", name, type, duration);

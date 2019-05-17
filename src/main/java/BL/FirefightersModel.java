@@ -25,8 +25,8 @@ public class FirefightersModel extends AbstractListModel {
     }
 
     /**
-     * 
-     * @param f 
+     * The method for loading a file.
+     * @param f File to be inported
      */
     public void load(File f) {
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
@@ -46,7 +46,7 @@ public class FirefightersModel extends AbstractListModel {
     }
     
     /**
-     * 
+     * The method for saving a file in a csv file
      */
     public void save() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("./files/FirefightersData.csv")))) {
@@ -59,8 +59,8 @@ public class FirefightersModel extends AbstractListModel {
     }
     
     /**
-     * 
-     * @param f 
+     * Method for adding a operation in the list.
+     * @param f The operation
      */
     public void addFeuerwehr(Firefighters f) {
         firefighters.add(f);
@@ -68,8 +68,8 @@ public class FirefightersModel extends AbstractListModel {
     }
     
     /**
-     * 
-     * @throws SQLException 
+     * The method for loading the operations from a database.
+     * @throws SQLException SQL Exception
      */
     public void loadFeuerwehrFromDatabase() throws SQLException {
         ResultSet res = dm.executeQuery("SELECT * FROM operations;");
@@ -79,9 +79,9 @@ public class FirefightersModel extends AbstractListModel {
         this.fireIntervalAdded(this, 0, firefighters.size() - 1);
     }
 
-    /**
-     * 
-     * @throws SQLException 
+    /* 
+     * The method for saving operations in a database.
+     * @throws SQLException SQL Exception
      */
     public void saveFeuerwehrToDatabase() throws SQLException {
         for (Firefighters f : firefighters) {
