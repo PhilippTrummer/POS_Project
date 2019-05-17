@@ -73,7 +73,7 @@ public class FeuerwehrGUI extends javax.swing.JFrame {
         });
         pmLog.add(miLoadDB);
 
-        miStart.setText("Einsatz starten");
+        miStart.setText("start operation");
         miStart.setActionCommand("start operation");
         miStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

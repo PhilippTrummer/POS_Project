@@ -42,7 +42,7 @@
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="miStart">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Einsatz starten"/>
+            <Property name="text" type="java.lang.String" value="start operation"/>
             <Property name="actionCommand" type="java.lang.String" value="start operation"/>
           </Properties>
           <Events>
